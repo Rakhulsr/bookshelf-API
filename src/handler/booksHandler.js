@@ -5,7 +5,10 @@ const {
   updateBook,
   deleteBook,
 } = require("../services/booksService.js");
-const validationBook = require("../utils/validationBook.js");
+const {
+  validationBook,
+  validationUpdateBook,
+} = require("../utils/validationBook.js");
 
 const getAllBooksHandler = (request, h) => {
   try {
@@ -111,7 +114,7 @@ const updateBookHandler = (request, h) => {
     reading,
   } = request.payload;
 
-  const validationMessage = validationBook({ name, pageCount, readPage });
+  const validationMessage = validationUpdateBook({ name, pageCount, readPage });
   if (validationMessage) {
     return h
       .response({
